@@ -1,5 +1,5 @@
 package io.zipcoder;
-
+import java.util.ArrayList;
 
 /**
  * @author tariq
@@ -15,7 +15,20 @@ public class StringsAndThings {
      *           countYZ("day fyyyz"); // Should return 2
      */
     public Integer countYZ(String input){
-        return null;
+
+                                     //An array to hold the words separated from the input
+        String[] separatedWords = input.split(" ");
+                                    //A counter to keep track of how many words fit the criteria
+        int count = 0;
+                                     //Check each element in the array for the ending characters
+        for (int i = 0; i <= separatedWords.length - 1; i++) {
+            if (separatedWords[i].endsWith("y") || separatedWords[i].endsWith("Y") ) {
+                count++;
+            } else if  (separatedWords[i].endsWith("z") || separatedWords[i].endsWith("Z") ) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -28,8 +41,16 @@ public class StringsAndThings {
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
     public String removeString(String base, String remove){
-        return null;
-    }
+
+        String newBase = "";
+        newBase = base.replace(remove, "");
+
+        return newBase;
+        }
+
+
+
+
 
     /**
      * Given a string, return true if the number of appearances of "is" anywhere in the string is equal
@@ -40,7 +61,40 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
+
+        //set counters and somewhere to keep the answer
+        int isCount = 0;
+        int notCount = 0;
+        boolean equality;
+
+        //break down input into an array of strings and check through each char
+
+        for (int i = 0; i < input.length() - 2; i++) {
+            if (input.charAt(i) == 'i' ) {
+                if (input.charAt(i + 1) == 's') {
+                    isCount ++;
+                } else isCount = isCount;
+            }
+        }
+
+        for (int i = 0; i < input.length() - 2; i++ ) {
+            if (input.charAt(i) == 'n') {
+                if (input.charAt(i + 1) == 'o') {
+                    if (input.charAt(i + 2) == 't') {
+                        notCount++;
+                    } else notCount = notCount;
+                }
+            }
+        }
+
+        //check if the number of ifs equal the number of nots
+        if (isCount == notCount) {
+            equality = true;
+        } else {
+            equality = false;
+        }
+
+        return equality;
     }
 
     /**
@@ -51,7 +105,20 @@ public class StringsAndThings {
      *           gHappy("xxggyygxx") // Should return  false
      */
     public Boolean gIsHappy(String input){
-        return null;
+      boolean allHappy = false;
+
+        //check to see if a g exists
+        for (int i = 0; i < input.length() - 1; i++) {              //if one exists check to see if there is one to the left OR right
+            if (input.charAt(i) == 'g') {
+                if (input.charAt(i - 1) == 'g' || input.charAt(i + 1) == 'g') {
+                    allHappy = true;
+                } else allHappy = false;            // check if there are any lone gs
+            }
+
+        }
+
+        return allHappy;
+
     }
 
 
@@ -63,6 +130,13 @@ public class StringsAndThings {
      *            countTriple("a") // Should return 0
      */
     public Integer countTriple(String input){
-        return null;
+       int counter = 0;
+
+        for (int i = 0; i < input.length() -2; i++) {
+            if (input.charAt(i) == input.charAt(i + 1) && input.charAt(i + 1) == input.charAt(i + 2)) {
+                counter++;
+            }
+        }
+        return counter;
     }
 }
